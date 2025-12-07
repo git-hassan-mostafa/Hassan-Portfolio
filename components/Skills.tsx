@@ -39,7 +39,7 @@ const Skills = (data: PortfolioData) => {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 animate-fade-in">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 animate-fade-in">
           {filteredSkills.map((skill) => (
             <div
               key={skill.id}
@@ -52,7 +52,7 @@ const Skills = (data: PortfolioData) => {
                 <div className="text-xs font-mono text-accent mb-2 uppercase tracking-wider opacity-70">
                   {skill.category}
                 </div>
-                <h3 className="text-xl font-bold text-white tracking-tight group-hover:translate-x-1 transition-transform duration-300">
+                <h3 className="text-sm md:text-lg font-bold text-white tracking-tight group-hover:translate-x-1 transition-transform duration-300">
                   {skill.name}
                 </h3>
               </div>

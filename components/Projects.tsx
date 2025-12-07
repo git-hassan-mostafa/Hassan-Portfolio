@@ -1,19 +1,29 @@
-import React from "react";
+import { useState } from "react";
 import Section from "./Section";
-import { usePortfolio } from "../context/PortfolioContext";
 import Image from "next/image";
 import { ImagesUrl } from "@/utils/Constants";
 import { ExternalLinkIcon, GithubIcon } from "./icons/Icons";
 import { PortfolioData } from "@/utils/types";
 
 const Projects = (data: PortfolioData) => {
+  const [expandedProjects, setExpandedProjects] = useState<{
+    [key: string]: boolean;
+  }>({});
+
+  function toggleProjectDescription(projectId: string) {
+    setExpandedProjects((prev) => ({
+      ...prev,
+      [projectId]: !prev[projectId],
+    }));
+  }
+
   return (
     <Section id="projects" title="Selected Works">
       <div className="space-y-24 lg:space-y-32">
         {data.projects.map((project, index) => (
           <div
             key={project.id}
-            className={`flex flex-col lg:flex-row gap-12 lg:gap-16 items-center ${
+            className={`flex flex-col lg:flex-row gap-12 lg:gap-16 items-start ${
               index % 2 === 1 ? "lg:flex-row-reverse" : ""
             }`}
           >
@@ -30,7 +40,7 @@ const Projects = (data: PortfolioData) => {
                 />
 
                 {/* Overlay Actions (Visible on Hover) */}
-                <div className="absolute inset-0 z-20 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className="hidden md:flex absolute inset-0 z-20 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <a
                     href={project.demourl}
                     target="_blank"
@@ -65,8 +75,20 @@ const Projects = (data: PortfolioData) => {
                 </h3>
               </div>
 
-              <p className="text-lg text-slate-400 leading-relaxed">
-                {project.description}
+              <p
+                onClick={() => toggleProjectDescription(project.id)}
+                className="text-md md:text-lg text-slate-400 leading-relaxed cursor-pointer"
+              >
+                {expandedProjects[project.id]
+                  ? project.description
+                  : `${project.description.slice(0, 100)}${
+                      project.description.length > 100 ? "... " : " "
+                    }`}
+                {project.description.length > 100 && (
+                  <span className="text-accent text-lg hover:text-white transition-colors">
+                    {expandedProjects[project.id] ? " less" : " more"}
+                  </span>
+                )}
               </p>
 
               <div className="space-y-4">
@@ -86,6 +108,26 @@ const Projects = (data: PortfolioData) => {
                       </span>
                     ))}
                 </div>
+              </div>
+              <div className="md:hidden flex gap-6 pt-4">
+                <a
+                  href={project.demourl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-white font-medium hover:text-accent transition-colors border-b border-transparent hover:border-accent pb-1"
+                >
+                  Live Demo
+                </a>
+                <ExternalLinkIcon />
+                <a
+                  href={project.repourl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-slate-400 font-medium hover:text-white transition-colors border-b border-transparent hover:border-white pb-1"
+                >
+                  Source Code
+                </a>
+                <GithubIcon />
               </div>
             </div>
           </div>
