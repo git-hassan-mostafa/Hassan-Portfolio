@@ -29,7 +29,7 @@ const Skills = (data: PortfolioData) => {
               onClick={() => setActiveCategory(category)}
               className={`cursor-pointer px-6 py-2 rounded-full text-sm font-medium tracking-wide transition-all duration-300 border ${
                 activeCategory === category
-                  ? "bg-white text-slate-900 border-white shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                  ? "bg-white text-slate-900 border-white"
                   : "bg-slate-900/50 text-slate-400 border-slate-700 hover:text-white hover:border-slate-500"
               }`}
             >

@@ -34,7 +34,7 @@ const Hero = (data: PortfolioData) => {
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
       </div>
 
-      <div className="max-w-7xl w-full grid lg:grid-cols-12 gap-12 items-center">
+      <div className="max-w-7xl w-full grid lg:grid-cols-12 gap-12 items-start">
         {/* Text Content */}
         <div className="lg:col-span-7 space-y-8 animate-slide-up order-2 lg:order-1">
           <div className="space-y-6">
@@ -131,7 +131,7 @@ const Hero = (data: PortfolioData) => {
         </div>
 
         {/* Hero Image / Visual */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end animate-fade-in order-1 lg:order-2">
+        <div className="lg:col-span-5 flex justify-center lg:justify-end animate-fade-in order-1 lg:order-2 lg:mt-14">
           <div className="relative w-72 h-72 md:w-96 md:h-96 group">
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-[2rem] rotate-6 group-hover:rotate-3 transition-transform duration-500 opacity-60 blur-lg"></div>
             <div className="relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-slate-800/50 backdrop-blur-sm">
