@@ -4,10 +4,9 @@ import { usePortfolio } from "../context/PortfolioContext";
 import Image from "next/image";
 import { ImagesUrl } from "@/utils/Constants";
 import { ExternalLinkIcon, GithubIcon } from "./icons/Icons";
+import { PortfolioData } from "@/utils/types";
 
-const Projects: React.FC = () => {
-  const { data } = usePortfolio();
-
+const Projects = (data: PortfolioData) => {
   return (
     <Section id="projects" title="Selected Works">
       <div className="space-y-24 lg:space-y-32">
